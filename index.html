@@ -11,15 +11,20 @@
 
     <div class="container">
 
-        <h2>Add Student Details</h2>
+        <h2>Student Registration</h2>
 
         <input type="text" id="name" placeholder="Student Name">
         <input type="text" id="roll" placeholder="Roll Number">
         <input type="text" id="dept" placeholder="Department">
-        <input type="number" id="year" placeholder="Year">
+        <input type="text" id="year" placeholder="Year of Study">
 
-        <button onclick="addStudent()">Add Student</button>
-        <button onclick="resetForm()">Reset</button>
+        <button onclick="addStudent()">Register Student</button>
+
+        <h2>Student Search</h2>
+
+        <input type="text" id="search"
+        placeholder="Search by Name or Roll Number"
+        onkeyup="searchStudent()">
 
         <h2>Student Details</h2>
 
@@ -27,10 +32,9 @@
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Roll No</th>
+                    <th>Roll Number</th>
                     <th>Department</th>
                     <th>Year</th>
-                    <th>Action</th>
                 </tr>
             </thead>
 
