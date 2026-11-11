@@ -1,52 +1,72 @@
 
-function register() {
+let students = [];
+
+function addStudent() {
 
     let name = document.getElementById("name").value;
-    let email = document.getElementById("email").value;
-    let phone = document.getElementById("phone").value;
-    let gender = document.getElementById("gender").value;
-    let college = document.getElementById("college").value;
+    let roll = document.getElementById("roll").value;
     let dept = document.getElementById("dept").value;
     let year = document.getElementById("year").value;
-    let event = document.getElementById("event").value;
 
-    let msg = document.getElementById("msg");
-
-    if (name == "" || email == "" || phone == "" ||
-        gender == "" || college == "" || dept == "" ||
-        year == "" || event == "") {
-
-        msg.style.color = "red";
-        msg.innerHTML = "Please fill all fields!";
+    if (name == "" || roll == "" || dept == "" || year == "") {
+        alert("Please fill all fields");
         return;
     }
 
-    if (!email.includes("@") || !email.includes(".")) {
-        msg.style.color = "red";
-        msg.innerHTML = "Enter valid email!";
-        return;
-    }
+    let student = {
+        name: name,
+        roll: roll,
+        dept: dept,
+        year: year
+    };
 
-    if (!/^[0-9]{10}$/.test(phone)) {
-        msg.style.color = "red";
-        msg.innerHTML = "Enter valid 10 digit phone number!";
-        return;
-    }
+    students.push(student);
 
-    msg.style.color = "green";
+    displayStudents();
+    resetForm();
 
-    msg.innerHTML =
-        "<h3>Registration Successful!</h3>" +
-        "Name: " + name + "<br>" +
-        "Email: " + email + "<br>" +
-        "Phone: " + phone + "<br>" +
-        "Gender: " + gender + "<br>" +
-        "College: " + college + "<br>" +
-        "Department: " + dept + "<br>" +
-        "Year: " + year + "<br>" +
-        "Event: " + event;
 }
 
-function clearResult() {
-    document.getElementById("msg").innerHTML = "";
+function displayStudents() {
+
+    let list = document.getElementById("studentList");
+
+    list.innerHTML = "";
+
+    students.forEach((s, index) => {
+
+        list.innerHTML += `
+        <tr>
+            <td>${s.name}</td>
+            <td>${s.roll}</td>
+            <td>${s.dept}</td>
+            <td>${s.year}</td>
+            <td>
+                <button class="delete"
+                onclick="deleteStudent(${index})">
+                Delete
+                </button>
+            </td>
+        </tr>
+        `;
+
+    });
+
+}
+
+function deleteStudent(index) {
+
+    students.splice(index, 1);
+
+    displayStudents();
+
+}
+
+function resetForm() {
+
+    document.getElementById("name").value = "";
+    document.getElementById("roll").value = "";
+    document.getElementById("dept").value = "";
+    document.getElementById("year").value = "";
+
 }
